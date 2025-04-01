@@ -17,7 +17,7 @@ const TermsConditionsPage = () => {
       </section>
 
       {/* Introduction Section */}
-      <section className="py-15 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto text-center p-2">
           <h2 className="text-5xl font-extrabold mb-8 text-blue-600">Introduction</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
@@ -27,7 +27,7 @@ const TermsConditionsPage = () => {
       </section>
 
       {/* User Responsibilities Section */}
-      <section className="py-15 bg-gray-50">
+      <section className="py-12 bg-gray-50">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-12 text-blue-600">User Responsibilities</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 p-10">
@@ -48,7 +48,7 @@ const TermsConditionsPage = () => {
       </section>
 
       {/* Copyright and Intellectual Property Section */}
-      <section className="py-15 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto text-center p-2">
           <h2 className="text-4xl font-extrabold mb-12 text-blue-600">Intellectual Property</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
@@ -58,7 +58,7 @@ const TermsConditionsPage = () => {
       </section>
 
       {/* Limitations of Liability Section */}
-      <section className="py-15 bg-gray-50">
+      <section className="py-12 bg-gray-50">
         <div className="container mx-auto text-center p-2">
           <h2 className="text-4xl font-extrabold mb-12 text-blue-600">Limitations of Liability</h2>
           <p className="text-lg text-gray-700 max-w-6xl mx-auto mb-8">
@@ -68,7 +68,7 @@ const TermsConditionsPage = () => {
       </section>
 
       {/* Governing Law Section */}
-      <section className="py-15 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto text-center p-2">
           <h2 className="text-4xl font-extrabold mb-12 text-blue-600">Governing Law</h2>
           <p className="text-lg text-gray-700 max-w-6xl mx-auto mb-8">
@@ -78,7 +78,7 @@ const TermsConditionsPage = () => {
       </section>
 
       {/* Contact Us Section */}
-      <section className="py-15 bg-white p-2">
+      <section className="py-12 bg-white p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-12 text-blue-600">Contact Us</h2>
           <p className="text-xl text-gray-800 max-w-3xl mx-auto mb-6">
