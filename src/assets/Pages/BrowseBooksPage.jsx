@@ -24,7 +24,7 @@ const BrowseBooksPage = () => {
       </section>
 
       <div className="container mx-auto text-center py-20">
-        <h1 className="text-xl font-semibold">Discover how we aim to make book discovery simple, fun, and accessible for all readers around the world!</h1>
+        <h1 className="text-xl font-semibold p-2">Discover how we aim to make book discovery simple, fun, and accessible for all readers around the world!</h1>
        
 
         {/* Genre Boxes */}
@@ -33,7 +33,7 @@ const BrowseBooksPage = () => {
             <Link 
               key={name} 
               to={`/genre/${name.toLowerCase().replace(/\s+/g, '-')}`} 
-              className="flex items-center justify-center p-25 rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-109"
+              className="flex items-center justify-center p-20 rounded-lg shadow-lg transition-transform duration-300 transform hover:scale-109"
               style={{
                 backgroundColor: color,
                 backgroundImage: `url(${image})`,
