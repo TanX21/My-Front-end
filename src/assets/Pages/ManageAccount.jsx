@@ -158,7 +158,7 @@ const ManageAccountPage = ({ user, onLogout }) => {
 
         {/* Password Prompt Modal */}
         {showPasswordPrompt && (
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50 p-3">
             <div className="bg-white p-6 rounded-lg shadow-lg w-96">
               <h3 className="text-xl font-semibold mb-4">Confirm Deletion</h3>
               <p className="mb-4">Please enter your password to confirm account deletion:</p>
