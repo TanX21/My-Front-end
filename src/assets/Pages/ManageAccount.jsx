@@ -97,7 +97,7 @@ const ManageAccountPage = ({ user, onLogout }) => {
             <input
               type="file"
               accept="image/*"
-              className="mt-2"
+              className="p-8"
               onChange={handleProfilePictureChange}
             />
           </div>
