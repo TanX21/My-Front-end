@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineManageAccounts } from 'react-icons/md';  // Import the logo icon
 import { useSearch } from '../context/SearchContext';
@@ -73,6 +73,38 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
   const handleSearchChange = (e) => {
     updateSearchQuery(e.target.value);  // Update the search query
   };
+
+  // useEffect(() => {
+  //   let timeout;
+  //   if (isMenuOpen) {
+  //     timeout = setTimeout(() => {
+  //       setIsMenuOpen(false);  // Close the menu after 3 seconds
+  //     }, 3000);
+  //   }
+
+  //   return () => {
+  //     if (timeout) clearTimeout(timeout);  // Cleanup timeout on component unmount or when menu state changes
+  //   };
+  // }, [isMenuOpen])
+  const menuRef = useRef(null);
+
+  // Close the mobile menu if clicked outside of it
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false); // Close the menu if click is outside of it
+      }
+    };
+
+    // Add event listener for clicks outside the menu
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
 
   return (
     <nav className={`bg-black p-4 fixed top-0 left-0 w-full z-50 ${isMenuOpen ? 'mb-32' : ''}`}>
@@ -170,7 +202,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
         </div>
 
         {/* Mobile View - Hamburger Icon */}
-        <div className="md:hidden flex items-center h-0">
+        <div ref={menuRef} className="md:hidden flex items-center h-0">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none m-4">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
