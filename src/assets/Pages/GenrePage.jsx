@@ -36,6 +36,11 @@ const GenrePage = ({ addFavorite }) => {
     fetchBooksByGenre();
   }, [genreName, currentPage]); // Add currentPage to the dependency array to trigger re-fetch on page change
 
+  // Scroll to top on page change
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  }, [currentPage]); // Trigger this effect when the currentPage changes
+
   // Handle next page
   const handleNextPage = () => {
     if (currentPage * resultsPerPage < totalItems) {
