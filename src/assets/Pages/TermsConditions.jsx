@@ -49,7 +49,7 @@ const TermsConditionsPage = () => {
 
       {/* Copyright and Intellectual Property Section */}
       <section className="py-15 bg-white">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center p-2">
           <h2 className="text-4xl font-extrabold mb-12 text-blue-600">Intellectual Property</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
             All content, including text, images, logos, graphics, and software, is the property of BookStore or its licensors and is protected by copyright laws. You are granted a limited, non-transferable license to access and use the website for personal, non-commercial purposes only.
@@ -59,7 +59,7 @@ const TermsConditionsPage = () => {
 
       {/* Limitations of Liability Section */}
       <section className="py-15 bg-gray-50">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center p-2">
           <h2 className="text-4xl font-extrabold mb-12 text-blue-600">Limitations of Liability</h2>
           <p className="text-lg text-gray-700 max-w-6xl mx-auto mb-8">
             BookStore will not be held liable for any damages resulting from the use of our services, including direct, indirect, or consequential damages. This includes any errors or omissions in the content or interruptions in service.
@@ -69,7 +69,7 @@ const TermsConditionsPage = () => {
 
       {/* Governing Law Section */}
       <section className="py-15 bg-white">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center p-2">
           <h2 className="text-4xl font-extrabold mb-12 text-blue-600">Governing Law</h2>
           <p className="text-lg text-gray-700 max-w-6xl mx-auto mb-8">
             These terms are governed by and construed in accordance with the laws of your country or jurisdiction. Any disputes arising under these terms will be subject to the exclusive jurisdiction of the courts in that jurisdiction.
