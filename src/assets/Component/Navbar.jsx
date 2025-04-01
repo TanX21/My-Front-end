@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { MdOutlineManageAccounts } from 'react-icons/md';  // Import the logo icon
+import { MdOutlineManageAccounts, MdClose } from 'react-icons/md';  // Import the logo icon
 import { useSearch } from '../context/SearchContext';
 
 const Navbar = ({ favoritesCount, user, onLogout }) => {
@@ -203,11 +203,17 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
 
         {/* Mobile View - Hamburger Icon */}
         <div className="md:hidden flex items-center h-0">
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none m-4">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none m-4">
+    {isMenuOpen ? (
+      // Show the close icon when the menu is open
+      <MdClose className="w-7 h-7" />
+    ) : (
+      // Show hamburger icon when the menu is closed
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    )}
+  </button>
         </div>
       </div>
 

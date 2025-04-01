@@ -23,7 +23,7 @@ const ManageAccountPage = ({ user, onLogout }) => {
   }, [user]);
 
   if (!user) {
-    return <div className="p-50">Loading...</div>;
+    return <div className="p-40 mt-8 text-xl justify-center flex">Loading...</div>;
   }
 
   const handleProfilePictureChange = (e) => {
