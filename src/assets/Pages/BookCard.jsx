@@ -37,9 +37,9 @@ const BookDetails = () => {
     const volumeInfo = book.volumeInfo;
 
     return (
-        <div className="container mx-auto py-25 px-10 bg-gray-300">
+        <div className="container mx-auto py-25 px-5 bg-gray-300">
 
-            <div className="bg-white shadow-lg rounded-lg p-8">
+            <div className="bg-white shadow-lg rounded-lg p-5">
                 <h1 className="text-5xl font-bold font-seri">{volumeInfo.title}</h1>
                 <p className="text-gray-600 font-serif text-3xl pt-2">{volumeInfo.authors?.join(', ')}</p>
                 <p className="text-gray-500 text-xl ">{volumeInfo.publishedDate}</p>
