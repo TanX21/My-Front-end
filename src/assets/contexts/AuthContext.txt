@@ -1,0 +1,65 @@
+import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
+
+export const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [favorites, setFavorites] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch user data on mount
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get('http://localhost:3005/api/user', { withCredentials: true });
+        setUser(res.data.user);
+      } catch (error) {
+        if (error.response && error.response.status === 403) {
+          setUser(null); // If user is not logged in
+        }
+        console.log('Error fetching user data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  // Fetch favorites when user data changes
+  useEffect(() => {
+    if (user) {
+      const fetchFavorites = async () => {
+        try {
+          const res = await axios.get('http://localhost:3005/api/favorites', { withCredentials: true });
+          setFavorites(res.data);
+        } catch (error) {
+          console.log('Error fetching favorites:', error);
+        }
+      };
+      fetchFavorites();
+    } else {
+      setFavorites([]); // Clear favorites on logout
+    }
+  }, [user]);
+
+  // Handle login
+  const handleLogin = (userData) => setUser(userData);
+
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://localhost:3005/api/user/logout', {}, { withCredentials: true });
+      setUser(null);
+      setFavorites([]);
+    } catch (error) {
+      console.log('Error logging out:', error);
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, favorites, loading, handleLogin, handleLogout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

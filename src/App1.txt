@@ -1,0 +1,57 @@
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Signup from './assets/Pages/signup';
+import HomePage from './assets/Pages/HomePage';
+import { Toaster, toast } from 'react-hot-toast';
+import Login from './assets/Pages/login';
+import BookDetails from './assets/Pages/BookCard';
+import Navbar from './assets/Component/Navbar';
+import axios from 'axios';
+import FavoriteBooksPage from './assets/Pages/FavoriteBooksPage';
+import Footer from './assets/Component/Footer';
+import OtpVerification from './assets/Pages/OtpVerification';
+import GenrePage from './assets/Pages/GenrePage';
+import ResetPassword from './assets/Pages/ResetPassword';
+import ForgetPasswordOtp from './assets/Pages/ForgetPasswordOtp';
+import ForgotPassword from './assets/Pages/ForgotPassword';
+import BrowseBooksPage from './assets/Pages/BrowseBooksPage';
+import AdminPanel from './assets/admin/AdminPanel';
+import { AuthContext } from './assets/contexts/AuthContext'; // Import the AuthContext
+
+function App() {
+  const { user, favorites, loading, setSearchQuery, searchQuery, handleLogin, handleLogout } = useContext(AuthContext);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <Router>
+      <Navbar
+        favoritesCount={favorites.length}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        user={user}
+        onLogout={handleLogout}
+      />
+      <Routes>
+        <Route path="/" element={<HomePage searchQuery={searchQuery} />} />
+        <Route path="/read/:bookId" element={<BookDetails />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/favorites" element={<FavoriteBooksPage favorites={favorites} />} />
+        <Route path="/genre/:genreName" element={<GenrePage />} />
+        <Route path="/verification" element={<OtpVerification />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-verification" element={<ForgetPasswordOtp />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/browsebooks" element={<BrowseBooksPage />} />
+        <Route path="/admin" element={<AdminPanel />} />
+      </Routes>
+      <Footer />
+      <Toaster />
+    </Router>
+  );
+}
+
+export default App;

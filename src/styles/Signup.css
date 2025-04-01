@@ -1,0 +1,105 @@
+/* @import "tailwindcss"; */
+
+/* CSS styles */
+
+.childx form {
+    color: aqua;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .box2 form input {
+    color: black;
+  }
+  
+  .box2 form input {
+    background-color: white;
+    width: 250px;
+  }
+  
+  .box1 {
+    display: flex;
+    justify-self: flex-start;
+    width: 380px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .box2 {
+    padding-top: 10px;
+    display: flex;
+  }
+  
+  .childx {
+    height: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin: 24px;
+  }
+  
+  form label {
+    padding-bottom: 5px;
+    padding-top: 10px;
+  }
+  
+  .sbtn {
+    margin-top: 30px;
+    background-color: red;
+    padding: 5px;
+  }
+  
+  .profile-image-preview {
+    /* margin-bottom: 10px; */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%; /* This makes the image a circle */
+    border: 2px solid #fff; /* Optional: adds a border around the image */
+  }
+  
+  .profile-picture-placeholder {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px dashed #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Slight background to make it stand out */
+  }
+  .profile-picture-container {
+    position: relative;
+    display: inline-block;
+}
+
+.change-icon {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.355);
+    color: white;
+    padding: 1px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+}
+  

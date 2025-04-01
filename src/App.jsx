@@ -1,0 +1,186 @@
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Signup from './assets/Pages/signup';
+import HomePage from './assets/Pages/HomePage';
+import { Toaster, toast } from 'react-hot-toast';
+import Login from './assets/Pages/login';
+import BookDetails from './assets/Pages/BookCard';
+import Navbar from './assets/Component/Navbar';
+import axios from 'axios';
+import FavoriteBooksPage from './assets/Pages/FavoriteBooksPage';
+import Footer from './assets/Component/Footer';
+import OtpVerification from './assets/Pages/OtpVerification';
+import GenrePage from './assets/Pages/GenrePage';
+import ResetPassword from './assets/Pages/ResetPassword';
+import ForgetPasswordOtp from './assets/Pages/ForgetPasswordOtp';
+import ForgotPassword from './assets/Pages/ForgotPassword';
+import BrowseBooksPage from './assets/Pages/BrowseBooksPage';
+import AdminPanel from './assets/admin/AdminPanel';
+import AboutPage from './assets/Pages/About';
+import ContactPage from './assets/Pages/Contact';
+import PrivacyPolicyPage from './assets/Pages/Privacy';
+
+function App() {
+  const [favorites, setFavorites] = useState([]); // Manage favorites state
+  const [searchQuery, setSearchQuery] = useState(''); // Manage search query state
+  const [user, setUser] = useState(null); // User state for authentication
+  const [loading, setLoading] = useState(true); // Loading state
+  
+
+  // Fetch the logged-in user's data (username) if they are authenticated
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get('http://localhost:3005/api/user', { withCredentials: true });
+        // console.log(res);
+        
+        setUser(res.data.user); // Store the user data
+        setLoading(false);  // Stop loading after fetching user
+      } catch (error) {
+        if (error.response && error.response.status === 403) {
+          // User is not logged in
+          setUser(null);
+        } else {
+          console.log('Error fetching user data:', error);
+        }
+        setLoading(false);  // Stop loading even if there's an error
+      }
+    };
+    fetchUser();
+  }, []); // Runs once on initial load
+
+  // Fetch the favorites data when the user is authenticated
+  useEffect(() => {
+    if (user) {
+      const fetchFavorites = async () => {
+        try {
+          const res = await axios.get('http://localhost:3005/api/favorites', { withCredentials: true });
+          setFavorites(res.data); // Set the favorites list
+        } catch (error) {
+          console.log('Error fetching favorites:', error);
+          toast.error('Failed to load favorites.');
+        }
+      };
+      fetchFavorites();
+    } else {
+      setFavorites([]); // Clear favorites if the user logs out
+    }
+  }, [user]); // Runs whenever the user state changes
+
+  // Handle adding a book to favorites
+  const addFavorite = async (book) => {
+    const isBookAlreadyInFavorites = favorites.some(fav => fav.id === book.id);
+
+    if (isBookAlreadyInFavorites) {
+      toast.error('This book is already in your favorites!');
+      return; // Exit early if already in favorites
+    }
+
+    const bookData = {
+      id: book.id,
+      title: book.volumeInfo.title,
+      authors: book.volumeInfo.authors,
+      imageUrl: book.volumeInfo.imageLinks?.thumbnail,
+      description: book.volumeInfo.description || "No description available",
+    };
+
+    try {
+      const res = await axios.post(
+        'http://localhost:3005/api/favorites/add',
+        { book: bookData },
+        { withCredentials: true }
+      );
+      setFavorites((prevFavorites) => [...prevFavorites, res.data.favorite]);
+      toast.success('Book added to favorites!');
+    } catch (error) {
+      console.log('Error adding favorite:', error);
+      toast.error('Failed to add favorite.');
+    }
+  };
+
+  // Handle removing a book from favorites
+  const removeFavorite = async (bookId) => {
+    try {
+      await axios.delete(`http://localhost:3005/api/favorites/${bookId}`, { withCredentials: true });
+      setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav.id !== bookId)); // Update local state
+      toast.success('Book removed from favorites!');
+    } catch (error) {
+      console.log('Error removing favorite:', error);
+      toast.error('Failed to remove favorite.');
+    }
+  };
+
+  // Handle search input change
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  // Handle login
+  const handleLogin = (userData) => {
+    setUser(userData); // Store user data on successful login
+  };
+
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://localhost:3005/api/user/logout', {}, { withCredentials: true });
+      setUser(null); // Clear user data on logout
+      setFavorites([]); // Clear favorites
+      toast.success('Logged out successfully!');
+    } catch (error) {
+      console.log('Error logging out:', error);
+      toast.error('Failed to log out.');
+    }
+  };
+
+  // If loading, display a loading indicator
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <Router>
+      <div>
+        {/* <Signup setUser={setUser} /> */}
+        {/* Navbar with dynamic favorites count and search */}
+        <Navbar
+          favoritesCount={favorites.length}
+          searchQuery={searchQuery}
+          onSearchChange={handleSearchChange}
+          user={user} // Pass the user object to Navbar
+          onLogout={handleLogout} // Logout handler for Navbar
+        />
+
+        <Routes>
+          <Route path="/" element={<HomePage searchQuery={searchQuery} addFavorite={addFavorite} />} />
+          <Route path="/read/:bookId" element={<BookDetails />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/favorites" element={<FavoriteBooksPage favorites={favorites} removeFavorite={removeFavorite} />} />
+
+          {/* Genre-specific route */}
+          <Route path="/genre/:genreName" element={<GenrePage addFavorite={addFavorite} />}  />
+
+          <Route path="/verification" element={<OtpVerification />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-verification" element={<ForgetPasswordOtp />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/browsebooks" element={<BrowseBooksPage />} />
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          
+        </Routes>
+
+        {/* Footer section */}
+        <Footer />
+      </div>
+
+      {/* Toast notifications */}
+      <Toaster />
+    </Router>
+  );
+}
+
+export default App;
