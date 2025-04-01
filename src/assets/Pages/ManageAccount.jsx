@@ -82,12 +82,12 @@ const ManageAccountPage = ({ user, onLogout }) => {
   };
 
   return (
-    <div className="bg-gray-100 mx-auto my-auto py-20 px-10 pt-25">
+    <div className="bg-gray-100 mx-auto my-auto py-15 px-10 pt-25">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
         <h1 className="text-3xl font-bold mb-4 text-center">Manage Your Account</h1>
 
         {/* Profile Picture Section */}
-        <div className="flex flex-col justify-center mb-4">
+        <div className="flex flex-col justify-center items-center mb-4">
           <img
             src={profilePicture || 'https://via.placeholder.com/150'}
             alt="Profile"
