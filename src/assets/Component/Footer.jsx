@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast'; // Import Toaster and toast
+import { Link } from 'react-router-dom'; // Import Link for routing
+import api from '../../axiosIntance.js';
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +39,7 @@ const Footer = () => {
 
     try {
       // Send form data to the backend API using axios
-      const response = await axios.post('http://localhost:3005/api/favorites/contact', formData, {
+      const response = await api.post('/favorites/contact', formData, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -72,11 +74,11 @@ const Footer = () => {
                 BookStore
               </span>
               <div className="space-y-2 flex flex-col mt-4">
-                <a href="/about" className="hover:text-yellow-300 transition duration-300">About Us</a>
-                <a href="/contact" className="hover:text-yellow-300 transition duration-300">Contact</a>
-                <a href="/privacy" className="hover:text-yellow-300 transition duration-300">Privacy Policy</a>
-                <a href="/terms" className="hover:text-yellow-300 transition duration-300">Terms & Conditions</a>
-                <a href="/admin" className="hover:text-yellow-300 transition duration-300">Admin Panel</a>
+                <Link to="/about" className="hover:text-yellow-300 transition duration-300">About Us</Link>
+                <Link to="/contact" className="hover:text-yellow-300 transition duration-300">Contact</Link>
+                <Link to="/privacy" className="hover:text-yellow-300 transition duration-300">Privacy Policy</Link>
+                <Link to="/terms" className="hover:text-yellow-300 transition duration-300">Terms & Conditions</Link>
+                <Link to="/admin" className="hover:text-yellow-300 transition duration-300">Admin Panel</Link>
               </div>
             </div>
 

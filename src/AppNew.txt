@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Signup from './assets/Pages/signup';
@@ -22,33 +21,37 @@ import ContactPage from './assets/Pages/Contact';
 import PrivacyPolicyPage from './assets/Pages/Privacy';
 import api from './axiosIntance';
 import TermsConditionsPage from './assets/Pages/TermsConditions';
-import { useSearch } from './assets/context/SearchContext';
-import ManageAccountPage from './assets/Pages/ManageAccount';
+import { SearchProvider, useSearch } from './assets/context/SearchContext';
 
 function App() {
-  const [favorites, setFavorites] = useState([]);
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const { searchQuery, updateSearchQuery } = useSearch(); // This should now work because it's inside the SearchProvider
+  const [favorites, setFavorites] = useState([]); // Manage favorites state
+  const [searchQuery, setSearchQuery] = useState(''); // Manage search query state
+  const [user, setUser] = useState(null); // User state for authentication
+  const [loading, setLoading] = useState(true); // Loading state
+  // const { searchQuery, updateSearchQuery } = useSearch();
+  
 
   // Fetch the logged-in user's data (username) if they are authenticated
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await api.get('/user', { withCredentials: true });
-        setUser(res.data.user);
-        setLoading(false);
+        // console.log(res);
+        
+        setUser(res.data.user); // Store the user data
+        setLoading(false);  // Stop loading after fetching user
       } catch (error) {
         if (error.response && error.response.status === 403) {
+          // User is not logged in
           setUser(null);
         } else {
           console.log('Error fetching user data:', error);
         }
-        setLoading(false);
+        setLoading(false);  // Stop loading even if there's an error
       }
     };
     fetchUser();
-  }, []);
+  }, []); // Runs once on initial load
 
   // Fetch the favorites data when the user is authenticated
   useEffect(() => {
@@ -56,7 +59,7 @@ function App() {
       const fetchFavorites = async () => {
         try {
           const res = await api.get('/favorites', { withCredentials: true });
-          setFavorites(res.data);
+          setFavorites(res.data); // Set the favorites list
         } catch (error) {
           console.log('Error fetching favorites:', error);
           toast.error('Failed to load favorites.');
@@ -64,16 +67,17 @@ function App() {
       };
       fetchFavorites();
     } else {
-      setFavorites([]);
+      setFavorites([]); // Clear favorites if the user logs out
     }
-  }, [user]);
+  }, [user]); // Runs whenever the user state changes
 
+  // Handle adding a book to favorites
   const addFavorite = async (book) => {
     const isBookAlreadyInFavorites = favorites.some(fav => fav.id === book.id);
 
     if (isBookAlreadyInFavorites) {
       toast.error('This book is already in your favorites!');
-      return;
+      return; // Exit early if already in favorites
     }
 
     const bookData = {
@@ -85,8 +89,12 @@ function App() {
     };
 
     try {
-      const res = await api.post('/favorites/add', { book: bookData }, { withCredentials: true });
-      setFavorites(prevFavorites => [...prevFavorites, res.data.favorite]);
+      const res = await api.post(
+        '/favorites/add',
+        { book: bookData },
+        { withCredentials: true }
+      );
+      setFavorites((prevFavorites) => [...prevFavorites, res.data.favorite]);
       toast.success('Book added to favorites!');
     } catch (error) {
       console.log('Error adding favorite:', error);
@@ -94,10 +102,11 @@ function App() {
     }
   };
 
+  // Handle removing a book from favorites
   const removeFavorite = async (bookId) => {
     try {
       await api.delete(`/favorites/${bookId}`, { withCredentials: true });
-      setFavorites(prevFavorites => prevFavorites.filter(fav => fav.id !== bookId));
+      setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav.id !== bookId)); // Update local state
       toast.success('Book removed from favorites!');
     } catch (error) {
       console.log('Error removing favorite:', error);
@@ -105,19 +114,23 @@ function App() {
     }
   };
 
-  const handleSearchChange = (e) => {
-    updateSearchQuery(e.target.value);
+  // Handle search input change
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
   };
 
+
+  // Handle login
   const handleLogin = (userData) => {
-    setUser(userData);
+    setUser(userData); // Store user data on successful login
   };
 
+  // Handle logout
   const handleLogout = async () => {
     try {
       await api.post('/user/logout', {}, { withCredentials: true });
-      setUser(null);
-      setFavorites([]);
+      setUser(null); // Clear user data on logout
+      setFavorites([]); // Clear favorites
       toast.success('Logged out successfully!');
     } catch (error) {
       console.log('Error logging out:', error);
@@ -125,19 +138,23 @@ function App() {
     }
   };
 
+  // If loading, display a loading indicator
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
+    <SearchProvider>
     <Router>
       <div>
+        {/* <Signup setUser={setUser} /> */}
+        {/* Navbar with dynamic favorites count and search */}
         <Navbar
           favoritesCount={favorites.length}
           searchQuery={searchQuery}
-          onSearchChange={handleSearchChange}
-          user={user}
-          onLogout={handleLogout}
+          onSearchChange={setSearchQuery}
+          user={user} // Pass the user object to Navbar
+          onLogout={handleLogout} // Logout handler for Navbar
         />
 
         <Routes>
@@ -146,7 +163,10 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/favorites" element={<FavoriteBooksPage favorites={favorites} removeFavorite={removeFavorite} />} />
-          <Route path="/genre/:genreName" element={<GenrePage addFavorite={addFavorite} />} />
+
+          {/* Genre-specific route */}
+          <Route path="/genre/:genreName" element={<GenrePage addFavorite={addFavorite} />}  />
+
           <Route path="/verification" element={<OtpVerification />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-verification" element={<ForgetPasswordOtp />} />
@@ -157,15 +177,17 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsConditionsPage />} />
-          <Route path="/account" element={<ManageAccountPage user={user} />} />
-
+          
         </Routes>
 
+        {/* Footer section */}
         <Footer />
       </div>
 
+      {/* Toast notifications */}
       <Toaster />
     </Router>
+    </SearchProvider>
   );
 }
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../styles/Signup.css';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import api from '../../axiosIntance';
 
 function Signup() {
     // const [user, setUser] = useState(null);
@@ -37,8 +38,8 @@ function Signup() {
         formData.append("profilePicture", profilePicture);
 
         try {
-            const res = await axios.post(
-                'http://localhost:3005/api/user/signup',
+            const res = await api.post(
+                '/user/signup',
                 formData,
                 {
                     headers: {
@@ -77,7 +78,6 @@ function Signup() {
         document.getElementById('profilePictureInput').click();
     };
     
-
     return (
         <div className='bg-[url(https://images3.alphacoders.com/130/thumb-1920-1305890.jpeg)] h-screen w-full items-center flex justify-center'>
             <div className='childx'>

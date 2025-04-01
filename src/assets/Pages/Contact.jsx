@@ -10,15 +10,15 @@ const ContactPage = () => {
       {/* Hero Section */}
       <section className="bg-[url(https://as2.ftcdn.net/v2/jpg/06/59/36/77/1000_F_659367778_NdVI1v6c7furKJE8DrEnRkVC52cHbvv1.jpg)] text-white py-40">
         <div className="container mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 tracking-wide">Contact Us</h1>
-          <p className="text-lg md:text-2xl mb-10 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 mt-4 tracking-wide">Contact Us</h1>
+          <p className="text-lg md:text-2xl max-w-4xl mx-auto p-3">
             We’d love to hear from you! Reach out to us with any questions, suggestions, or feedback.
           </p>
         </div>
       </section>
 
       {/* Contact Information Section */}
-      <section className="py-20 bg-white">
+      <section className="py-15 bg-white p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">Get in Touch</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
@@ -34,8 +34,8 @@ const ContactPage = () => {
       </section>
 
       {/* Company Values Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto text-center">
+      <section className="py-15 bg-gray-50">
+        <div className="container mx-auto text-center p-2">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">Our Core Values</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
             Our mission is to create a seamless and enriching experience for our users. Here’s what we stand for:
@@ -65,7 +65,7 @@ const ContactPage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-15 bg-white">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">Frequently Asked Questions</h2>
           <div className="space-y-8">

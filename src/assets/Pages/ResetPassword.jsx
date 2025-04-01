@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import '../../Login.css'; // Reuse the same CSS
+import api from '../../axiosIntance.js';
+
 
 function ResetPassword() {
     const { state } = useLocation();  // Get email from state
@@ -31,7 +33,7 @@ function ResetPassword() {
         setLoading(true);
 
         try {
-            const res = await axios.post('http://localhost:3005/api/user/reset-password', {
+            const res = await api.post('/user/reset-password', {
                 email: state.email,
                 newPassword
             });

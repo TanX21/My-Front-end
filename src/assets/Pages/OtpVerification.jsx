@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import api from '../../axiosIntance.js';
+
 
 function OtpVerification() {
     const { state } = useLocation(); // Get the email from the previous page
@@ -69,8 +71,8 @@ function OtpVerification() {
         setLoading(true); // Set loading to true
     
         try {
-            const res = await axios.post(
-                'http://localhost:3005/api/user/verify-otp',
+            const res = await api.post(
+                '/user/verify-otp',
                 { email, otp }
             );
     

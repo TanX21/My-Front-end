@@ -8,7 +8,7 @@ const PrivacyPolicyPage = () => {
       {/* Hero Section */}
       <section className="bg-[url(https://as2.ftcdn.net/v2/jpg/06/59/36/77/1000_F_659367778_NdVI1v6c7furKJE8DrEnRkVC52cHbvv1.jpg)] text-white py-40">
         <div className="container mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 tracking-wide">Privacy Policy</h1>
+          <h1 className="text-5xl md:text-6xl font-extrabold mt-4 tracking-wide">Privacy Policy</h1>
           {/* <p className="text-lg md:text-2xl mb-10 max-w-4xl mx-auto">
             Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.
           </p> */}
@@ -17,7 +17,7 @@ const PrivacyPolicyPage = () => {
 
       {/* Privacy Policy Overview */}
       <section className="py-10 bg-white">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center p-2">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">Privacy Policy Overview</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
             This Privacy Policy outlines how we collect, use, and safeguard your personal information when you visit our website or interact with our services. We are committed to protecting your privacy and ensuring your personal information is handled securely.
@@ -26,7 +26,7 @@ const PrivacyPolicyPage = () => {
       </section>
 
       {/* Information We Collect */}
-      <section className="py-10 bg-gray-50">
+      <section className="py-10 bg-gray-50 p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">Information We Collect</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
@@ -36,7 +36,7 @@ const PrivacyPolicyPage = () => {
       </section>
 
       {/* How We Use Your Information */}
-      <section className="py-10 bg-white">
+      <section className="py-10 bg-white p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">How We Use Your Information</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
@@ -46,7 +46,7 @@ const PrivacyPolicyPage = () => {
       </section>
 
       {/* How We Protect Your Information */}
-      <section className="py-10 bg-gray-50">
+      <section className="py-10 bg-gray-50 p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">How We Protect Your Information</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
@@ -56,7 +56,7 @@ const PrivacyPolicyPage = () => {
       </section>
 
       {/* Sharing Your Information */}
-      <section className="py-10 bg-white">
+      <section className="py-10 bg-white p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">Sharing Your Information</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
@@ -66,7 +66,7 @@ const PrivacyPolicyPage = () => {
       </section>
 
       {/* Your Rights and Choices */}
-      <section className="py-10 bg-gray-50">
+      <section className="py-10 bg-gray-50 p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">Your Rights and Choices</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
@@ -76,7 +76,7 @@ const PrivacyPolicyPage = () => {
       </section>
 
       {/* Changes to This Privacy Policy */}
-      <section className="py-10 bg-white">
+      <section className="py-10 bg-white p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">Changes to This Privacy Policy</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
@@ -86,7 +86,7 @@ const PrivacyPolicyPage = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="py-10 bg-gray-50">
+      <section className="py-10 bg-gray-50 p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-blue-600">Contact Us</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">

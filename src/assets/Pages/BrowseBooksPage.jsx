@@ -15,9 +15,17 @@ const BrowseBooksPage = () => {
   ]);
   
   return (
-    <div className="bg-gray-100 py-20">
-      <div className="container mx-auto text-center">
-        <h1 className="text-3xl font-bold mb-8 mt-8">Browse Books by Genre</h1>
+    <div className="bg-gray-100">
+
+       <section className="bg-[url(https://as2.ftcdn.net/v2/jpg/06/59/36/77/1000_F_659367778_NdVI1v6c7furKJE8DrEnRkVC52cHbvv1.jpg)] text-white py-40">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mt-5 tracking-wide">Browse Books by Genre</h1>
+        </div>
+      </section>
+
+      <div className="container mx-auto text-center py-20">
+        <h1 className="text-xl font-semibold">Discover how we aim to make book discovery simple, fun, and accessible for all readers around the world!</h1>
+       
 
         {/* Genre Boxes */}
         <div className="grid grid-cols-auto md:grid-cols-3 lg:grid-cols-3 gap-8 p-8">

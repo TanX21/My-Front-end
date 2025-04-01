@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import api from '../../axiosIntance.js';
+
 
 const AdminFavorites = () => {
   const [favoritesData, setFavoritesData] = useState([]);
@@ -10,7 +12,7 @@ const AdminFavorites = () => {
   useEffect(() => {
     const fetchAllFavorites = async () => {
       try {
-        const res = await axios.get('http://localhost:3005/api/admin/favorites', {
+        const res = await api.get('/admin/favorites', {
           withCredentials: true,  // Ensure cookies (for JWT token) are sent with request
         });
         setFavoritesData(res.data);

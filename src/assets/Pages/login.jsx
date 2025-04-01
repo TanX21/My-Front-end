@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import '../../Login.css'; // Adjust the path accordingly
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import api from '../../axiosIntance';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -13,8 +14,8 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        'http://localhost:3005/api/user/login',
+      const res = await api.post(
+        '/user/login',
         { username, password },
         {
           headers: {

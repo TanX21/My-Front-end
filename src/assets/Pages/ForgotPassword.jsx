@@ -3,6 +3,8 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';  // Import useNavigate
 import '../../Login.css';  // Adjust the path accordingly
+import api from '../../axiosIntance.js';
+
 
 function ForgotPassword() {
     const [email, setEmail] = useState('');
@@ -11,7 +13,7 @@ function ForgotPassword() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:3005/api/user/forgot-password', { email });
+            const res = await api.post('/user/forgot-password', { email });
             toast.success('OTP sent to your email');
             // Navigate to ForgetPasswordOtp after OTP is sent, passing email via state
             navigate('/reset-verification', { state: { email } });  // Pass email through state

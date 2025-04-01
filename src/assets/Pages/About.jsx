@@ -9,8 +9,8 @@ const AboutPage = () => {
       {/* Hero Section */}
       <section className="bg-[url(https://as2.ftcdn.net/v2/jpg/06/59/36/77/1000_F_659367778_NdVI1v6c7furKJE8DrEnRkVC52cHbvv1.jpg)] text-white py-40">
         <div className="container mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 tracking-wide">About Us</h1>
-          <p className="text-lg md:text-2xl mb-10 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 mt-4 tracking-wide">About Us</h1>
+          <p className="text-lg md:text-2xl max-w-4xl mx-auto p-3">
             Discover how we aim to make book discovery simple, fun, and accessible for all readers around the world!
           </p>
         </div>
@@ -18,7 +18,7 @@ const AboutPage = () => {
 
       {/* Our Mission Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center p-2">
           <h2 className="text-5xl font-extrabold mb-8 text-blue-600">Our Mission</h2>
           <p className="text-lg text-gray-800 max-w-6xl mx-auto mb-8">
             At Book Store, we are passionate about making books more accessible and enjoyable. We believe that books can transform lives, fuel imaginations, and connect people to new worlds. Our goal is to create a platform where readers can explore an extensive library, discover hidden gems, and track their favorite reads effortlessly.
@@ -57,7 +57,7 @@ const AboutPage = () => {
       </section>
 
       {/* Contact Us Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white p-2">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-extrabold mb-12 text-blue-600">Contact Us</h2>
           <p className="text-xl text-gray-800 max-w-3xl mx-auto mb-6">
@@ -75,7 +75,7 @@ const AboutPage = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-12 bg-blue-600 text-center text-white">
+      <section className="py-12 bg-blue-600 text-center text-white p-2">
         <h2 className="text-4xl font-extrabold mb-6">Start Your Reading Journey Today</h2>
         <p className="text-lg mb-8">Join our community of book lovers and discover books that will ignite your passion for reading!</p>
         <Link

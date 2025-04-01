@@ -9,8 +9,8 @@ const AdminPanel = () => {
       {/* Hero Section */}
       <section className="bg-[url(https://as2.ftcdn.net/v2/jpg/06/59/36/77/1000_F_659367778_NdVI1v6c7furKJE8DrEnRkVC52cHbvv1.jpg)] text-white py-40">
         <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Admin Panel</h1>
-          <p className="text-lg md:text-xl mb-8">Manage users and contact submissions</p>
+          <h1 className="text-4xl md:text-5xl font-bold mt-4 mb-4">Admin Panel</h1>
+          <p className="text-lg md:text-xl">Manage users and contact submissions</p>
         </div>
       </section>
 

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import api from '../../axiosIntance.js';
+
 
 function ForgetPasswordOtp() {
     const { state } = useLocation(); // Get the email from the previous page
@@ -65,8 +67,8 @@ function ForgetPasswordOtp() {
         setLoading(true); // Set loading to true
     
         try {
-            const res = await axios.post(
-                'http://localhost:3005/api/user/reset-verification',  // Ensure the correct API endpoint is used for OTP verification
+            const res = await api.post(
+                '/user/reset-verification',  // Ensure the correct API endpoint is used for OTP verification
                 { email, otp }
             );
     

@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineManageAccounts } from 'react-icons/md';  // Import the logo icon
-import { useSearch } from '../context/SearchContext';
 
-const Navbar = ({ favoritesCount, user, onLogout }) => {
+const Navbar = ({ favoritesCount, searchQuery, onSearchChange, user, onLogout }) => {
   const [isGenreDropdownOpen, setIsGenreDropdownOpen] = useState(false);
   const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [genreDropdownTimeout, setGenreDropdownTimeout] = useState(null);
   const [accountDropdownTimeout, setAccountDropdownTimeout] = useState(null);
-  const { searchQuery, updateSearchQuery } = useSearch();
   
 
   const genres = [
@@ -70,10 +68,6 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
     setIsAccountDropdownOpen(prevState => !prevState);
   };
 
-  const handleSearchChange = (e) => {
-    updateSearchQuery(e.target.value);  // Update the search query
-  };
-
   return (
     <nav className={`bg-black p-4 fixed top-0 left-0 w-full z-50 ${isMenuOpen ? 'mb-32' : ''}`}>
       <div className="container mx-auto flex justify-between items-center">
@@ -89,7 +83,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
             placeholder="Search Books..."
             className="p-2 w-80 mr-4 border border-gray-400 rounded text-white"
             value={searchQuery}
-            onChange={handleSearchChange}
+            onChange={onSearchChange}
           />
           <Link to="/" className="text-white hover:text-yellow-300">Home</Link>
 
@@ -104,10 +98,10 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
               Genre
             </Link>
             {isGenreDropdownOpen && (
-              <div className="absolute left-0 mt-2 w-40  bg-black text-white rounded shadow-lg">
+              <div className="absolute left-0 mt-2 w-40 bg-black text-white rounded shadow-lg">
                 <ul>
                   {genres.map((genre, index) => (
-                    <li key={index} className="px-4 py-2.5 hover:bg-yellow-300 hover:text-black">
+                    <li key={index} className="px-4 py-2 hover:bg-yellow-300 hover:text-black">
                       <Link to={`/genre/${encodeURIComponent(genre.toLowerCase().replace(/\s+/g, '-'))}`} className="block">
                         {genre}
                       </Link>
@@ -150,7 +144,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
                 {isAccountDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-40 bg-black text-white rounded shadow-lg">
                     <ul>
-                      <li className="px-4 py-2.5 hover:bg-yellow-300 hover:text-black">
+                      <li className="px-4 py-2 hover:bg-yellow-300 hover:text-black">
                         <Link to="/account" className="block">Manage Account</Link>
                       </li>
                       <li className="px-4 py-2 hover:bg-yellow-300 hover:text-black">
@@ -188,7 +182,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
             placeholder="Search Books..."
             className="p-2 w-full mb-4 border border-gray-400 rounded text-white"
             value={searchQuery}
-            onChange={handleSearchChange}
+            onChange={onSearchChange}
           />
           <Link to="/" className="block text-white hover:text-yellow-300 mb-2">Home</Link>
           <div className="relative mb-2">
@@ -205,7 +199,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
               <div className="absolute left-0 mt-2 w-40 bg-black text-white rounded shadow-lg">
                 <ul>
                   {genres.map((genre, index) => (
-                    <li key={index} className="px-4 py-2.5 hover:bg-yellow-300 hover:text-black">
+                    <li key={index} className="px-4 py-2 hover:bg-yellow-300 hover:text-black">
                       <Link to={`/genre/${encodeURIComponent(genre.toLowerCase().replace(/\s+/g, '-'))}`} className="block">
                         {genre}
                       </Link>
@@ -238,7 +232,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
                 {isAccountDropdownOpen && (
                   <div className="absolute left-0 mt-2 w-full bg-black text-white rounded shadow-lg">
                     <ul>
-                      <li className="px-4 py-2.5 hover:bg-yellow-300 hover:text-black">
+                      <li className="px-4 py-2 hover:bg-yellow-300 hover:text-black">
                         <Link to="/account" className="block">Manage Account</Link>
                       </li>
                       <li className="px-4 py-2 hover:bg-yellow-300 hover:text-black">

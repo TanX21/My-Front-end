@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { useSearch } from '../context/SearchContext';
 
 const GenrePage = ({ addFavorite }) => {
   const { genreName } = useParams(); // Get genre from URL parameter
@@ -10,6 +11,7 @@ const GenrePage = ({ addFavorite }) => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1); // Track current page
   const [totalItems, setTotalItems] = useState(0); // Total number of books available
+  const { searchQuery } = useSearch(); // Get the search query from context
 
   const resultsPerPage = 21;
 
@@ -56,14 +58,30 @@ const GenrePage = ({ addFavorite }) => {
     return <div className="text-center py-20 text-red-500">{error}</div>;
   }
 
+  // Filter books based on search query
+  const filteredBooks = books.filter((book) =>
+    (book.volumeInfo.title && book.volumeInfo.title.toLowerCase().includes(searchQuery.toLowerCase())) ||
+    (book.volumeInfo.authors && book.volumeInfo.authors.some((author) =>
+      author.toLowerCase().includes(searchQuery.toLowerCase())
+    ))
+  );
+
   return (
     <div className="bg-gray-100 py-20">
       <div className="container mx-auto text-center">
         <h1 className="text-3xl font-bold mb-8 mt-8">
           {genreName.charAt(0).toUpperCase() + genreName.slice(1)} Books
         </h1>
+
+        {/* Show message when no books match the search query */}
+        {filteredBooks.length === 0 && searchQuery && (
+          <div className="text-center text-xl text-red-500 mb-8">
+            No books found matching "{searchQuery}". Please try a different search.
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-10">
-          {books.map((book) => (
+          {filteredBooks.map((book) => (
             <div key={book.id} className="bg-white pt-8 shadow-lg rounded-lg overflow-hidden">
               <img
                 src={book.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/300x400'}

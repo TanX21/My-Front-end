@@ -37,44 +37,46 @@ const BookDetails = () => {
     const volumeInfo = book.volumeInfo;
 
     return (
-        <div className="container mx-auto py-20 p-20 bg-gray-300">
-        
+        <div className="container mx-auto py-25 px-10 bg-gray-300">
+
             <div className="bg-white shadow-lg rounded-lg p-8">
-                <h1 className="text-4xl font-bold">{volumeInfo.title}</h1>
-                <p className="text-gray-600 text-3xl">{volumeInfo.authors?.join(', ')}</p>
-                <p className="text-gray-500 text-2xl">{volumeInfo.publishedDate}</p>
-                
+                <h1 className="text-5xl font-bold font-seri">{volumeInfo.title}</h1>
+                <p className="text-gray-600 font-serif text-3xl pt-2">{volumeInfo.authors?.join(', ')}</p>
+                <p className="text-gray-500 text-xl ">{volumeInfo.publishedDate}</p>
+
                 {/* Book Image */}
                 <img
                     src={volumeInfo.imageLinks?.thumbnail || "https://via.placeholder.com/300x400"}
                     alt={volumeInfo.title}
-                    className="w-full h-100 mb-25 object-contain mt-4"
+                    className="w-full h-100 mb-10 object-contain mt-4"
                 />
-                
+
                 {/* Book Description */}
-                <div className="mt-4 text-2xl" dangerouslySetInnerHTML={{ __html: volumeInfo.description || 'No description available' }} />
+                <div className="mt-4 pb-4 text-xl sm:text-2xl font-sans" dangerouslySetInnerHTML={{ __html: volumeInfo.description || 'No description available' }} />
 
                 {/* Additional Book Details */}
                 <div className="mt-6">
                     <h2 className="text-3xl font-semibold">Additional Details</h2>
-                    <ul className="list-disc pl-5 mt-2">
-                        <li><strong>Publisher:</strong> {volumeInfo.publisher || 'N/A'}</li>
-                        <li><strong>Page Count:</strong> {volumeInfo.pageCount || 'N/A'}</li>
-                        <li><strong>Categories:</strong> {volumeInfo.categories ? volumeInfo.categories.join(', ') : 'N/A'}</li>
-                        <li><strong>Language:</strong> {volumeInfo.language || 'N/A'}</li>
-                        <li><strong>Average Rating:</strong> {volumeInfo.averageRating ? `${volumeInfo.averageRating} / 5` : 'N/A'}</li>
-                        <li><strong>Ratings Count:</strong> {volumeInfo.ratingsCount || 'N/A'}</li>
+                    <ul className="list-disc pl-6 space-y-1.5 mt-4">
+                        <li className='text-xl'><strong>Publisher :</strong> {volumeInfo.publisher || 'N/A'}</li>
+                        <li className='text-xl'><strong>Page Count :</strong> {volumeInfo.pageCount || 'N/A'}</li>
+                        <li className='text-xl'><strong>Categories :</strong> {volumeInfo.categories ? volumeInfo.categories.join(', ') : 'N/A'}</li>
+                        <li className='text-xl'><strong>Language :</strong> {volumeInfo.language || 'N/A'}</li>
+                        <li className='text-xl'><strong>Average Rating :</strong> {volumeInfo.averageRating ? `${volumeInfo.averageRating} / 5` : 'No rating available'}</li>
+                        <li className='text-xl'><strong>Ratings Count :</strong> {volumeInfo.ratingsCount || 'No rating available'}</li>
+                        <li className='text-xl'><strong>Dimensions:</strong> {volumeInfo.dimensions ? `${volumeInfo.dimensions.height} x ${volumeInfo.dimensions.width} x ${volumeInfo.dimensions.thickness}` : 'N/A'}</li>
+
                     </ul>
                 </div>
 
                 {/* Preview Link */}
                 {volumeInfo.previewLink && (
-                    <div className="mt-6">
-                        <a 
-                            href={volumeInfo.previewLink} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="text-blue-500 underline"
+                    <div className="mt-6 ml-5">
+                        <a
+                            href={volumeInfo.previewLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 underline text-xl"
                         >
                             Preview this book
                         </a>
