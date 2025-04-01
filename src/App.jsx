@@ -24,6 +24,7 @@ import api from './axiosIntance';
 import TermsConditionsPage from './assets/Pages/TermsConditions';
 import { useSearch } from './assets/context/SearchContext';
 import ManageAccountPage from './assets/Pages/ManageAccount';
+import ScrollToTop from './assets/context/ScrollTop';
 
 function App() {
   const [favorites, setFavorites] = useState([]);
@@ -131,6 +132,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <div>
         <Navbar
           favoritesCount={favorites.length}
