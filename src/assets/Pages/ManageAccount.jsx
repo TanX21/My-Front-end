@@ -87,13 +87,13 @@ const ManageAccountPage = ({ user, onLogout }) => {
         <h1 className="text-3xl font-bold mb-4 text-center">Manage Your Account</h1>
 
         {/* Profile Picture Section */}
-        <div className="flex justify-center mb-4">
+        <div className="flex flex-col justify-center mb-4">
           <img
             src={profilePicture || 'https://via.placeholder.com/150'}
             alt="Profile"
             className="w-32 h-32 rounded-full object-cover mb-4"
           />
-          <div> <br />
+          <div>
             <input
               type="file"
               accept="image/*"
