@@ -93,7 +93,7 @@ const ManageAccountPage = ({ user, onLogout }) => {
             alt="Profile"
             className="w-32 h-32 rounded-full object-cover mb-4"
           />
-          <div>
+          <div> <br />
             <input
               type="file"
               accept="image/*"
