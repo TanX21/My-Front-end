@@ -196,7 +196,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
               to="#" 
               className="block text-white hover:text-yellow-300" 
               onClick={handleGenreClick}  // Toggle dropdown on click
-              onMouseEnter={handleGenreHover}  // Open on hover
+              // onMouseEnter={handleGenreHover}  // Open on hover
               onMouseLeave={handleGenreLeave}  // Close on hover leave
             >
               Genre
@@ -230,7 +230,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
                 <button 
                   className="block text-white hover:text-yellow-300 w-full" 
                   onClick={handleAccountClick}  // Toggle dropdown on click
-                  onMouseEnter={handleAccountHover}  // Open on hover
+                  // onMouseEnter={handleAccountHover}  // Open on hover
                   onMouseLeave={handleAccountLeave}  // Close on hover leave
                 >
                   Account Options
