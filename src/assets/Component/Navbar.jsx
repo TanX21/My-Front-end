@@ -202,7 +202,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
         </div>
 
         {/* Mobile View - Hamburger Icon */}
-        <div ref={menuRef} className="md:hidden flex items-center h-0">
+        <div className="md:hidden flex items-center h-0">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none m-4">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
@@ -213,7 +213,7 @@ const Navbar = ({ favoritesCount, user, onLogout }) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-black p-4">
+        <div ref={menuRef} className="md:hidden bg-black p-4">
           {/* Search Bar for Mobile */}
           <input
             type="text"
